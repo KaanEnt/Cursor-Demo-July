@@ -2,7 +2,7 @@
 
 Marketing waitlist site for PowerSell, an AI sales enablement product. A dark landing page: full-bleed hero, How it Works, FAQ, and a waitlist signup that stores emails in the browser until a backend exists.
 
-The look is lifted cobalt on off-black slate with Outfit type. Every brand decision lives in one editable token file; the main page opts into dark tokens via `html.dark`. A slate dark variant is at `/dark`, and a true-black dark landing is at `/true-dark`.
+The look is lifted cobalt on pure black with Outfit type. Every brand decision lives in one editable token file; the main page opts into dark tokens via `html.dark`. Matching dark variants live at `/dark` and `/true-dark` (true-dark uses a dedicated `.true-dark` palette).
 
 ## Stack
 
@@ -39,7 +39,7 @@ All visual tokens live in `src/design-system/tokens.css`. Change a value there a
 --radius: 0.75rem;
 ```
 
-Dark mode overrides live under `.dark` in the same file (off-black slate canvas, lifted cobalt). Pages opt in with `class="dark"` on `<html>` (see `index.html` and `dark.html`). True black mode uses `class="true-dark"` (see `true-dark.html`) for a pure `#000000` canvas.
+Dark mode overrides live under `.dark` in the same file (pure black canvas, lifted cobalt). Pages opt in with `class="dark"` on `<html>` (see `index.html` and `dark.html`). `/true-dark` uses `class="true-dark"` for the same black canvas with a slightly brighter cobalt accent.
 
 Tints (section bands, borders, soft fills) derive from `--color-primary` with `color-mix`, so a single edit rebrands the accents everywhere.
 
