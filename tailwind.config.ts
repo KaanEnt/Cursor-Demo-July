@@ -3,7 +3,7 @@ import type { Config } from 'tailwindcss';
 // All colors resolve to CSS variables defined in src/design-system/tokens.css.
 // Edit that file to rebrand the site; never hardcode brand hex in components.
 export default {
-  content: ['./index.html', './src/**/*.{ts,tsx}'],
+  content: ['./*.html', './src/**/*.{ts,tsx}'],
   theme: {
     extend: {
       colors: {
