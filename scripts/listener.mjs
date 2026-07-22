@@ -306,9 +306,21 @@ async function main() {
       .filter((d) => (d.createdAt ?? 0) > state.lastDeploymentCreatedAt && !state.announced.includes(depId(d)))
       .sort((a, b) => (a.createdAt ?? 0) - (b.createdAt ?? 0));
     if (fresh.length) {
-      const newest = fresh[fresh.length - 1];
-      for (const d of fresh) announce(d);
-      await watchDeployment(newest);
+      // Deploys that completed while the listener was off get a quiet note, not a stale log replay.
+      const isStale = (d) =>
+        ['READY', 'ERROR', 'CANCELED'].includes(depState(d)) &&
+        (d.createdAt ?? 0) < Date.now() - 2 * POLL_MS;
+      for (const d of fresh.filter(isStale)) {
+        log(dim(`○ missed deployment ${depId(d).slice(0, 20)}… (${depState(d)}) while offline`));
+        if (!state.announced.includes(depId(d))) state.announced.push(depId(d));
+        state.lastDeploymentCreatedAt = Math.max(state.lastDeploymentCreatedAt, d.createdAt ?? 0);
+        saveState();
+      }
+      const live = fresh.filter((d) => !isStale(d));
+      if (live.length) {
+        for (const d of live) announce(d);
+        await watchDeployment(live[live.length - 1]);
+      }
     }
     await checkManifest();
     await sleep(POLL_MS);
