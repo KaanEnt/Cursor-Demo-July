@@ -11,6 +11,10 @@ export default {
         foreground: 'var(--color-foreground)',
         surface: 'var(--color-surface)',
         muted: 'var(--color-muted)',
+        inverse: {
+          DEFAULT: 'var(--color-inverse)',
+          foreground: 'var(--color-inverse-foreground)',
+        },
         primary: {
           DEFAULT: 'var(--color-primary)',
           hover: 'var(--color-primary-hover)',
