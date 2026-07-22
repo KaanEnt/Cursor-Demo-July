@@ -1,8 +1,12 @@
 # PowerSell Landing
 
-Marketing waitlist site for PowerSell, an AI sales enablement product. A single light page: hero with an agent pipeline preview, a three step How it Works section, an FAQ, and a waitlist signup that stores emails in the browser until a backend exists.
+Marketing waitlist site for PowerSell, an AI sales enablement product. The default light page has a hero with an agent pipeline preview, a three step How it Works section, an FAQ, and a waitlist signup that stores emails in the browser until a backend exists.
 
-The visual language matches the PowerSell product app (cream canvas, viridian accents, charcoal text) and every brand decision lives in one editable token file.
+Alternate pages:
+- `/dark` — pure-black token theme of the same layout
+- `/consultancy` — serious B2B consultancy treatment (cool stone, ink, steel; Outfit + IBM Plex Mono)
+
+The default visual language matches the PowerSell product app (cream canvas, viridian accents, charcoal text). Every brand decision lives in one editable token file; page themes override under `.dark` and `.consultancy` in `tokens.css`.
 
 ## Stack
 
