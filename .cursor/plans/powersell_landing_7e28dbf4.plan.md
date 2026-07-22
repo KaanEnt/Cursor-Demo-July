@@ -4,19 +4,19 @@ overview: "Standalone Vite + React marketing site in this workspace that ports P
 todos:
   - id: scaffold
     content: Scaffold Vite + React + TS + Tailwind app and port PowerSell tokens into tokens.css / tokens.ts / Tailwind mapping
-    status: pending
+    status: completed
   - id: sections
     content: Build Nav, Hero, HowItWorks, WaitlistForm, Faq, Footer using semantic token classes only
-    status: pending
+    status: completed
   - id: waitlist
     content: Implement waitlist validation + localStorage helper with success/error UI
-    status: pending
+    status: completed
   - id: polish
     content: Add favicon, light motion, responsive checks, and verify token edits propagate site-wide
-    status: pending
+    status: completed
   - id: repo-polish
     content: "Run git-repo-polish skill: strengthen README and foundation docs (gitignore, license metadata, CONTRIBUTING as needed) for a presentable public-ready marketing site"
-    status: pending
+    status: completed
 isProject: false
 ---
 
@@ -150,3 +150,15 @@ Do not invent features, waitlist backend claims, or security guarantees. Keep do
 - Waitlist: invalid email rejected; valid email shows success and is stored
 - Changing `--color-primary` in `tokens.css` updates buttons, accents, and step numbers site-wide
 - README accurately describes setup, design-token editing, and project purpose
+
+## Completion Log
+
+- **Date completed**: 2026-07-22
+- **Commit range**: 9530e5c..99b8bd0 (initial build, 11 tiered commits), plus follow-up copy and plan-status commits
+- **Deviations**:
+  - Hero reworked at user request after the initial build: waitlist form removed from the hero in favor of a single anchor CTA; product skeleton mock replaced with a four-agent pipeline visual (Company Profiler, Pain Point Analyzer, Product Matcher, Outreach Generator); dedicated waitlist section moved below the FAQ to close the page.
+  - Typography extended with Source Serif 4 as a display face alongside DM Sans.
+  - Primary tints derive from `--color-primary` via `color-mix`, so one token edit rebrands accents, bands, and borders.
+  - Page copy passed through no-dash-copy-editor at user request (em dashes removed, "AI-powered" and "well-qualified" modifiers replaced).
+  - `node_modules/` and `dist/` had been tracked by an auto-commit hook; local unpushed commits were soft-reset and both directories untracked before the tiered commit sweep.
+  - LICENSE and CONTRIBUTING intentionally omitted: no license norm existed on the remote, and the README quick start covers local setup.
