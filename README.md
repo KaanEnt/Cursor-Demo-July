@@ -1,12 +1,12 @@
 # PowerSell Landing
 
-Marketing waitlist site for PowerSell, an AI sales enablement product. The default light page has a hero with an agent pipeline preview, a three step How it Works section, an FAQ, and a waitlist signup that stores emails in the browser until a backend exists.
+Marketing waitlist site for PowerSell, an AI sales enablement product. The main landing uses a dark cobalt-on-black treatment: full-bleed hero, How it Works, FAQ, and a waitlist signup that stores emails in the browser until a backend exists.
 
 Alternate pages:
-- `/dark` — pure-black token theme of the same layout
+- `/dark` and `/true-dark` — pure-black token themes of the shared layout
 - `/consultancy` — serious B2B consultancy treatment (cool stone, ink, steel; Outfit + IBM Plex Mono)
 
-The default visual language matches the PowerSell product app (cream canvas, viridian accents, charcoal text). Every brand decision lives in one editable token file; page themes override under `.dark` and `.consultancy` in `tokens.css`.
+Every brand decision lives in one editable token file. Themes override under `.dark`, `.true-dark`, and `.consultancy` in `tokens.css`.
 
 ## Stack
 
@@ -37,15 +37,17 @@ Scaffold one with `npm run page:new -- pricing "Pricing"`. The build emits `dist
 All visual tokens live in `src/design-system/tokens.css`. Change a value there and it propagates site wide through the Tailwind mapping in `tailwind.config.ts`.
 
 ```css
---color-primary: #40826d;   /* CTAs, accents, step numbers */
---color-canvas: #f9f6ee;    /* page background */
---color-foreground: #343434; /* headings, footer */
---radius: 0.5rem;
+--color-primary: #2f6fed;   /* cobalt CTAs and accents (light) */
+--color-canvas: #eef2f7;    /* cool mist page background (light) */
+--color-foreground: #142033; /* ink headings (light) */
+--radius: 0.75rem;
 ```
 
-Tints (soft circles, section bands, borders) derive from `--color-primary` with `color-mix`, so a single edit rebrands the accents everywhere.
+Dark mode overrides live under `.dark` in the same file (pure black canvas, lifted cobalt). Pages opt in with `class="dark"` on `<html>` (see `index.html` and `dark.html`). `/true-dark` uses `class="true-dark"` for the same black canvas with a slightly brighter cobalt accent. `/consultancy` uses `class="consultancy"` for the stone/ink/steel palette.
 
-Page copy, the How it Works steps, the hero agent pipeline, and FAQ content live in `src/design-system/tokens.ts` next to the visual tokens.
+Tints (section bands, borders, soft fills) derive from `--color-primary` with `color-mix`, so a single edit rebrands the accents everywhere.
+
+Page copy, How it Works steps, and FAQ content live in `src/design-system/tokens.ts` next to the visual tokens. Hero photography lives in `public/images/`.
 
 ## Project layout
 
@@ -54,10 +56,11 @@ src/
   design-system/   tokens.css (visual) + tokens.ts (content)
   components/      Nav, Hero, HowItWorks, WaitlistForm, Waitlist, Faq, Footer
   lib/waitlist.ts  email validation + localStorage store
+public/images/     hero and section photography
 ```
 
 `src/lib/waitlist.ts` exposes `submitWaitlist(email)` with a stable result contract, ready to swap for an API call later.
 
 ## Reference
 
-The product app this site markets lives at `/Users/kaan/.superset/projects/PowerSell/` (read only reference for tokens and copy; this repo never modifies it).
+The product app this site markets lives at `/Users/kaan/.superset/projects/PowerSell/` (read only reference for copy; this repo never modifies it).

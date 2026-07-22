@@ -1,6 +1,6 @@
 import { StrictMode, useState, type FormEvent } from 'react';
 import { createRoot } from 'react-dom/client';
-import { agents, brand, faq, howItWorks, waitlistCopy } from '../design-system/tokens';
+import { brand, faq, howItWorks, waitlistCopy } from '../design-system/tokens';
 import { submitWaitlist } from '../lib/waitlist';
 import '../index.css';
 
@@ -11,6 +11,29 @@ const copy = {
   method: 'The method',
   close: 'Request early access',
 } as const;
+
+const briefAgents = [
+  {
+    name: 'Company Profiler',
+    action: 'Researching prospect',
+    output: 'Acme Robotics: Series B, 140 people, expanding EU operations',
+  },
+  {
+    name: 'Pain Point Analyzer',
+    action: 'Reading buying signals',
+    output: 'Lead handoff between SDRs and AEs is slowing deals down',
+  },
+  {
+    name: 'Product Matcher',
+    action: 'Mapping your catalog',
+    output: 'Workflow Automation Suite fits the handoff bottleneck',
+  },
+  {
+    name: 'Outreach Generator',
+    action: 'Drafting outreach',
+    output: 'Personalized email ready for your review',
+  },
+] as const;
 
 function ConsultancyNav() {
   return (
@@ -52,7 +75,7 @@ function HeroBriefPlane() {
           <span>04 / 04</span>
         </div>
         <ul className="mt-8 space-y-6 font-mono text-xs text-white/70">
-          {agents.map((agent, index) => (
+          {briefAgents.map((agent, index) => (
             <li key={agent.name} className="animate-rise" style={{ animationDelay: `${0.25 + index * 0.1}s` }}>
               <div className="flex gap-4">
                 <span className="text-white/35">0{index + 1}</span>
