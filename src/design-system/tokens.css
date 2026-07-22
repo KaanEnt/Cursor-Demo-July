@@ -56,3 +56,26 @@
   --color-primary-band: color-mix(in srgb, var(--color-primary) 8%, #000000);
   --color-border: color-mix(in srgb, var(--color-primary) 32%, transparent);
 }
+
+/* True dark landing (/true-dark): pure black canvas, same token names. */
+.true-dark {
+  color-scheme: dark;
+
+  --color-canvas: #000000; /* pure black page background */
+  --color-foreground: #f5f7fb;
+  --color-surface: #0a0a0a; /* near-black panels / nav */
+  --color-muted: #8a9199;
+
+  --color-primary: #6b9aff; /* lifted cobalt for black grounds */
+  --color-primary-hover: #8ab0ff;
+  --color-primary-foreground: #000000;
+
+  --color-inverse: #000000; /* black footer band */
+  --color-inverse-foreground: #a3a3a3;
+
+  --color-primary-faint: color-mix(in srgb, var(--color-primary) 16%, transparent);
+  --color-primary-soft: color-mix(in srgb, var(--color-primary) 26%, transparent);
+  --color-primary-strong: color-mix(in srgb, var(--color-primary) 40%, transparent);
+  --color-primary-band: color-mix(in srgb, var(--color-primary) 8%, #000000);
+  --color-border: color-mix(in srgb, var(--color-primary) 32%, transparent);
+}
