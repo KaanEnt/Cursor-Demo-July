@@ -19,6 +19,15 @@ npm run build    # typecheck + production build to dist/
 npm run preview  # serve the production build locally
 ```
 
+## Adding a page
+
+Every root-level `.html` file is a page — no config edits needed. A page is two files:
+
+1. `<name>.html` — copy of `index.html` with a new `<title>` and the script src pointed at `/src/pages/<name>.tsx`
+2. `src/pages/<name>.tsx` — `mountPage(<PageShell>…</PageShell>)` using design-system token classes only
+
+Scaffold one with `npm run page:new -- pricing "Pricing"`. The build emits `dist/manifest.json` listing all pages; `npm run listen` runs the local watcher that streams Vercel deploy logs and auto-opens newly deployed pages in the browser.
+
 ## Editing the design system
 
 All visual tokens live in `src/design-system/tokens.css`. Change a value there and it propagates site wide through the Tailwind mapping in `tailwind.config.ts`.
