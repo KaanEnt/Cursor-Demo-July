@@ -29,3 +29,24 @@
   --font-sans: 'DM Sans', ui-sans-serif, system-ui, sans-serif;
   --font-display: 'Source Serif 4', ui-serif, Georgia, serif;
 }
+
+/* Dark landing (/dark): same token names, inverted surfaces. */
+.dark {
+  color-scheme: dark;
+
+  --color-canvas: #141816; /* deep charcoal-green page background */
+  --color-foreground: #f2efe8; /* cream headings, footer band */
+  --color-surface: #1e2421; /* cards, nav */
+  --color-muted: #9aa3ad; /* body copy */
+
+  --color-primary: #5a9e88; /* lifted viridian for dark backgrounds */
+  --color-primary-hover: #6bb096;
+  --color-primary-foreground: #0f1412; /* text on primary */
+
+  /* Derived tints recompute from the dark primary */
+  --color-primary-faint: color-mix(in srgb, var(--color-primary) 14%, transparent);
+  --color-primary-soft: color-mix(in srgb, var(--color-primary) 24%, transparent);
+  --color-primary-strong: color-mix(in srgb, var(--color-primary) 36%, transparent);
+  --color-primary-band: color-mix(in srgb, var(--color-primary) 10%, transparent);
+  --color-border: color-mix(in srgb, var(--color-primary) 28%, transparent);
+}
