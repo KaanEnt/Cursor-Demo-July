@@ -16,6 +16,11 @@ const BUILD_POLL_MS = Number(process.env.BUILD_POLL_MS ?? 5_000);
 const STATE_PATH = join(projectDir, 'scripts', '.listener-state.json');
 const AUTH_PATH = join(homedir(), 'Library', 'Application Support', 'com.vercel.cli', 'auth.json');
 const REPLAY_LAST = process.argv.includes('--replay-last');
+const TEST_OPEN_AT = process.argv.indexOf('--test-open');
+
+const BROWSER_APP = process.env.BROWSER_APP ?? 'Google Chrome';
+const WINDOW_W = Number(process.env.PAGE_WINDOW_W ?? 1180);
+const WINDOW_H = Number(process.env.PAGE_WINDOW_H ?? 760);
 
 const tty = process.stdout.isTTY;
 const paint = (code, s) => (tty ? `\x1b[${code}m${s}\x1b[0m` : s);
@@ -150,6 +155,75 @@ function printEvents(events) {
   }
 }
 
+let screen = null;
+let openCount = 0;
+
+function screenBounds() {
+  if (screen) return screen;
+  try {
+    const out = execFileSync('osascript', ['-e', 'tell application "Finder" to get bounds of window of desktop'])
+      .toString()
+      .trim();
+    const [, , w, h] = out.split(',').map((n) => Number(n.trim()));
+    screen = { w, h };
+  } catch {
+    screen = { w: 1728, h: 1080 };
+  }
+  return screen;
+}
+
+// Demo windows spread across the screen: center first, then corners and edges, cascading.
+function nextWindowBounds() {
+  const { w, h } = screenBounds();
+  const margin = 36;
+  const menubar = 42;
+  const maxX = Math.max(margin, w - WINDOW_W - margin);
+  const maxY = Math.max(menubar, h - WINDOW_H - margin);
+  const cx = Math.min(Math.max(margin, Math.round((w - WINDOW_W) / 2)), maxX);
+  const cy = Math.min(Math.max(menubar, Math.round((h - WINDOW_H) / 2)), maxY);
+  const slots = [
+    [cx, cy],
+    [margin, menubar],
+    [maxX, menubar],
+    [margin, maxY],
+    [maxX, maxY],
+    [cx, menubar],
+    [cx, maxY],
+  ];
+  const i = openCount++;
+  const jitter = Math.floor(i / slots.length) * 28;
+  const [x, y] = slots[i % slots.length];
+  return { x: Math.min(x + jitter, maxX), y: Math.min(y + jitter, maxY) };
+}
+
+function browserScript(url, x, y) {
+  const bounds = `{${x}, ${y}, ${x + WINDOW_W}, ${y + WINDOW_H}}`;
+  if (BROWSER_APP === 'Safari') {
+    return `tell application "Safari"
+  activate
+  make new document with properties {URL:"${url}"}
+  set bounds of front window to ${bounds}
+end tell`;
+  }
+  // Chromium dictionary covers Chrome, Brave, and Edge.
+  return `tell application "${BROWSER_APP}"
+  activate
+  make new window
+  set URL of active tab of front window to "${url}"
+  set bounds of front window to ${bounds}
+end tell`;
+}
+
+function openPage(url) {
+  const { x, y } = nextWindowBounds();
+  return new Promise((done) => {
+    execFile('osascript', ['-e', browserScript(url, x, y)], (err) => {
+      if (err) execFile('/usr/bin/open', [url]);
+      done();
+    });
+  });
+}
+
 async function fetchManifest() {
   try {
     const res = await fetch(`${SITE_ORIGIN}/manifest.json?t=${Date.now()}`, {
@@ -176,8 +250,8 @@ async function checkManifest({ announceUnchanged = false } = {}) {
   const pages = manifest.pages ?? [];
   const fresh = pages.filter((p) => !state.knownPages.includes(p.path));
   for (const page of fresh) {
-    log(`${magenta('▲ NEW PAGE')} ${page.path}${page.title ? dim(`  (${page.title})`) : ''} → opening in browser`);
-    execFile('/usr/bin/open', [SITE_ORIGIN + page.path]);
+    log(`${magenta('▲ NEW PAGE')} ${page.path}${page.title ? dim(`  (${page.title})`) : ''} → opening in ${BROWSER_APP}`);
+    await openPage(SITE_ORIGIN + page.path);
   }
   if (!fresh.length && changed && announceUnchanged) {
     log(dim(`site updated (${manifest.commit}) — no new pages`));
@@ -294,6 +368,17 @@ async function seedBaseline() {
 }
 
 async function main() {
+  // Window rehearsal: `npm run listen -- --test-open / /pricing` opens pages without deploying.
+  if (TEST_OPEN_AT !== -1) {
+    const paths = process.argv.slice(TEST_OPEN_AT + 1).filter((a) => a.startsWith('/'));
+    for (const path of paths.length ? paths : ['/']) {
+      log(`${magenta('▲ TEST OPEN')} ${path} → ${BROWSER_APP}`);
+      await openPage(SITE_ORIGIN + path);
+      await sleep(400);
+    }
+    process.exit(0);
+  }
+
   log(`watching ${cyan(SITE_ORIGIN.replace(/^https?:\/\//, ''))} ${dim(`· poll ${POLL_MS / 1000}s · build poll ${BUILD_POLL_MS / 1000}s`)}`);
 
   state = loadState();
