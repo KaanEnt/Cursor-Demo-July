@@ -1,8 +1,8 @@
 # PowerSell Landing
 
-Marketing waitlist site for PowerSell, an AI sales enablement product. A single light page: hero with an agent pipeline preview, a three step How it Works section, an FAQ, and a waitlist signup that stores emails in the browser until a backend exists.
+Marketing waitlist site for PowerSell, an AI sales enablement product. A dark landing page: hero with an agent pipeline preview, a three step How it Works section, an FAQ, and a waitlist signup that stores emails in the browser until a backend exists.
 
-The visual language matches the PowerSell product app (cream canvas, viridian accents, charcoal text) and every brand decision lives in one editable token file.
+The visual language uses a pure-black canvas with lifted viridian accents and near-white text. Every brand decision lives in one editable token file; the main page opts into dark tokens via `html.dark`.
 
 ## Stack
 
@@ -33,11 +33,13 @@ Scaffold one with `npm run page:new -- pricing "Pricing"`. The build emits `dist
 All visual tokens live in `src/design-system/tokens.css`. Change a value there and it propagates site wide through the Tailwind mapping in `tailwind.config.ts`.
 
 ```css
---color-primary: #40826d;   /* CTAs, accents, step numbers */
---color-canvas: #f9f6ee;    /* page background */
---color-foreground: #343434; /* headings, footer */
+--color-primary: #40826d;   /* CTAs, accents, step numbers (light) */
+--color-canvas: #f9f6ee;    /* page background (light) */
+--color-foreground: #343434; /* headings, footer (light) */
 --radius: 0.5rem;
 ```
+
+Dark mode overrides live under `.dark` in the same file (pure black canvas, lifted primary). Pages opt in with `class="dark"` on `<html>` (see `index.html` and `dark.html`).
 
 Tints (soft circles, section bands, borders) derive from `--color-primary` with `color-mix`, so a single edit rebrands the accents everywhere.
 
