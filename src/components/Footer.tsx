@@ -2,7 +2,7 @@ import { brand } from '../design-system/tokens';
 
 export function Footer() {
   return (
-    <footer className="bg-foreground py-10 text-primary-foreground">
+    <footer className="border-t border-border bg-inverse py-10 text-inverse-foreground">
       <div className="container mx-auto px-4">
         <div className="flex flex-col items-center justify-between md:flex-row">
           <div className="mb-4 text-center md:mb-0 md:text-left">
