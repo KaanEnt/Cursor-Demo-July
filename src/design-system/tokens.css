@@ -1,0 +1,31 @@
+/*
+ * PowerSell design tokens — the single edit surface for the brand look.
+ * Change a value here and it propagates site-wide through the Tailwind
+ * mapping in tailwind.config.ts. Components never use raw hex.
+ *
+ * Tints are derived from --color-primary with color-mix, so editing the
+ * primary color updates soft accents, bands, and borders automatically.
+ */
+:root {
+  /* Palette (ported from the PowerSell app) */
+  --color-canvas: #f9f6ee; /* cream page background */
+  --color-foreground: #343434; /* charcoal headings, footer */
+  --color-surface: #ffffff; /* cards, nav */
+  --color-muted: #5b6472; /* body copy */
+
+  --color-primary: #40826d; /* viridian CTAs and accents */
+  --color-primary-hover: #366a59;
+  --color-primary-foreground: #f9f6ee; /* text on primary */
+
+  /* Derived tints */
+  --color-primary-faint: color-mix(in srgb, var(--color-primary) 10%, transparent);
+  --color-primary-soft: color-mix(in srgb, var(--color-primary) 20%, transparent);
+  --color-primary-strong: color-mix(in srgb, var(--color-primary) 30%, transparent);
+  --color-primary-band: color-mix(in srgb, var(--color-primary) 5%, transparent);
+  --color-border: color-mix(in srgb, var(--color-primary) 20%, transparent);
+
+  /* Shape and type */
+  --radius: 0.5rem;
+  --font-sans: 'DM Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Source Serif 4', ui-serif, Georgia, serif;
+}
