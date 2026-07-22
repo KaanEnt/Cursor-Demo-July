@@ -34,25 +34,25 @@
   --font-display: 'Outfit', ui-sans-serif, system-ui, sans-serif;
 }
 
-/* Dark landing (/dark): same token names, dark theme lock. */
+/* Dark landing (/dark): pure black surfaces, same token names. */
 .dark {
   color-scheme: dark;
 
-  --color-canvas: #0c111a; /* off-black slate canvas */
-  --color-foreground: #eef2f7;
-  --color-surface: #141b27;
-  --color-muted: #93a0b5;
+  --color-canvas: #000000; /* pure black page background */
+  --color-foreground: #f5f5f5;
+  --color-surface: #0a0a0a; /* near-black cards, nav */
+  --color-muted: #8a9199;
 
-  --color-primary: #5b8ef5; /* lifted cobalt for dark grounds */
+  --color-primary: #5b8ef5; /* lifted cobalt for black grounds */
   --color-primary-hover: #7aa3f7;
-  --color-primary-foreground: #0c111a;
+  --color-primary-foreground: #000000;
 
-  --color-inverse: #070a10;
-  --color-inverse-foreground: #a8b3c7;
+  --color-inverse: #000000; /* black footer band */
+  --color-inverse-foreground: #a3a3a3;
 
   --color-primary-faint: color-mix(in srgb, var(--color-primary) 16%, transparent);
   --color-primary-soft: color-mix(in srgb, var(--color-primary) 26%, transparent);
   --color-primary-strong: color-mix(in srgb, var(--color-primary) 40%, transparent);
-  --color-primary-band: color-mix(in srgb, var(--color-primary) 10%, #0c111a);
-  --color-border: color-mix(in srgb, var(--color-primary) 28%, transparent);
+  --color-primary-band: color-mix(in srgb, var(--color-primary) 8%, #000000);
+  --color-border: color-mix(in srgb, var(--color-primary) 32%, transparent);
 }
