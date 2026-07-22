@@ -4,14 +4,14 @@
 export const brand = {
   name: 'PowerSell',
   tagline: 'AI Sales Enablement',
-  footerLine: 'AI-powered sales enablement',
+  footerLine: 'AI sales enablement',
 } as const;
 
 export const hero = {
   headlineLead: 'Supercharge Your ',
   headlineAccent: 'Sales Process',
   headlineTail: ' With AI',
-  body: 'PowerSell helps sales teams create personalized outreach, identify prospect pain points, and match product features to customer needs - all powered by AI.',
+  body: 'PowerSell researches your prospects, finds their pain points, and matches your products to their needs. Then it writes the outreach for you.',
   cta: 'Join the Waitlist',
   ctaNote: 'Early access rolls out from the waitlist in small batches.',
 } as const;
@@ -27,7 +27,7 @@ export const agents: Agent[] = [
   {
     name: 'Company Profiler',
     action: 'Researching prospect',
-    output: 'Acme Robotics — Series B, 140 people, expanding EU operations',
+    output: 'Acme Robotics: Series B, 140 people, expanding EU operations',
   },
   {
     name: 'Pain Point Analyzer',
@@ -98,7 +98,7 @@ export const faq: { heading: string; items: FaqItem[] } = {
     {
       question: 'Who is it for?',
       answer:
-        'Sales teams and founders who want to spend less time on manual research and more time talking to well-qualified prospects.',
+        'Sales teams and founders who want to spend less time on manual research and more time talking to qualified prospects.',
     },
     {
       question: 'How do the AI agents work?',

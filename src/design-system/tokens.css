@@ -1,5 +1,5 @@
 /*
- * PowerSell design tokens — the single edit surface for the brand look.
+ * PowerSell design tokens: the single edit surface for the brand look.
  * Change a value here and it propagates site-wide through the Tailwind
  * mapping in tailwind.config.ts. Components never use raw hex.
  *
