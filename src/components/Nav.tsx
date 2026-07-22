@@ -21,23 +21,20 @@ export function Nav() {
   }));
 
   return (
-    <header className="sticky top-0 z-10 border-b border-border bg-surface">
+    <header className="absolute inset-x-0 top-0 z-20">
       <div className="container mx-auto flex h-16 max-w-6xl items-center justify-between px-4">
-        <div className="flex items-baseline gap-3">
-          <a
-            href={homeHref}
-            className="text-2xl font-bold text-foreground transition-colors hover:text-primary"
-          >
-            {brand.name}
-          </a>
-          <span className="hidden text-sm text-primary sm:inline">{brand.tagline}</span>
-        </div>
-        <nav className="flex items-center gap-4 sm:gap-6">
+        <a
+          href={homeHref}
+          className="text-xl font-bold tracking-tight text-foreground transition-colors hover:text-primary"
+        >
+          {brand.name}
+        </a>
+        <nav className="flex items-center gap-5 sm:gap-7">
           {links.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="text-sm font-medium text-foreground transition-colors hover:text-primary sm:text-base"
+              className="text-sm font-medium text-foreground/80 transition-colors hover:text-primary sm:text-base"
             >
               {link.label}
             </a>
