@@ -32,6 +32,7 @@
   --radius: 0.75rem;
   --font-sans: 'Outfit', ui-sans-serif, system-ui, sans-serif;
   --font-display: 'Outfit', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
 /* Dark landing (/dark): pure black surfaces, same token names. */
@@ -78,4 +79,36 @@
   --color-primary-strong: color-mix(in srgb, var(--color-primary) 40%, transparent);
   --color-primary-band: color-mix(in srgb, var(--color-primary) 8%, #000000);
   --color-border: color-mix(in srgb, var(--color-primary) 32%, transparent);
+}
+
+/*
+ * Consultancy landing (/consultancy): cool stone + ink + steel.
+ * Serious B2B dials from design-taste-frontend (variance 5 / motion 4 / density 5).
+ * Deliberately distinct from cream/viridian and pure-black themes.
+ */
+.consultancy {
+  color-scheme: light;
+
+  --color-canvas: #eceef1; /* cool stone paper */
+  --color-foreground: #0e1a2b; /* ink */
+  --color-surface: #f7f8fa;
+  --color-muted: #5a6573;
+
+  --color-primary: #3a6f8f; /* steel, sat < 80% */
+  --color-primary-hover: #2f5d7a;
+  --color-primary-foreground: #f7f8fa;
+
+  --color-inverse: #0e1a2b;
+  --color-inverse-foreground: #c5ccd6;
+
+  --color-primary-faint: color-mix(in srgb, var(--color-primary) 12%, transparent);
+  --color-primary-soft: color-mix(in srgb, var(--color-primary) 22%, transparent);
+  --color-primary-strong: color-mix(in srgb, var(--color-primary) 34%, transparent);
+  --color-primary-band: color-mix(in srgb, var(--color-primary) 8%, transparent);
+  --color-border: color-mix(in srgb, var(--color-foreground) 14%, transparent);
+
+  --radius: 0px; /* sharp consultancy geometry */
+  --font-sans: 'Outfit', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Outfit', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
 }
