@@ -1,8 +1,8 @@
 # PowerSell Landing
 
-Marketing waitlist site for PowerSell, an AI sales enablement product. A single light page: hero with an agent pipeline preview, a three step How it Works section, an FAQ, and a waitlist signup that stores emails in the browser until a backend exists.
+Marketing waitlist site for PowerSell, an AI sales enablement product. A single page: full-bleed hero, How it Works, FAQ, and a waitlist signup that stores emails in the browser until a backend exists.
 
-The visual language matches the PowerSell product app (cream canvas, viridian accents, charcoal text) and every brand decision lives in one editable token file.
+The look is cobalt on cool slate with Outfit type. Every brand decision lives in one editable token file. A dark variant is available at `/dark`.
 
 ## Stack
 
@@ -33,15 +33,15 @@ Scaffold one with `npm run page:new -- pricing "Pricing"`. The build emits `dist
 All visual tokens live in `src/design-system/tokens.css`. Change a value there and it propagates site wide through the Tailwind mapping in `tailwind.config.ts`.
 
 ```css
---color-primary: #40826d;   /* CTAs, accents, step numbers */
---color-canvas: #f9f6ee;    /* page background */
---color-foreground: #343434; /* headings, footer */
---radius: 0.5rem;
+--color-primary: #2f6fed;   /* cobalt CTAs and accents */
+--color-canvas: #eef2f7;    /* cool mist page background */
+--color-foreground: #142033; /* ink headings */
+--radius: 0.75rem;
 ```
 
-Tints (soft circles, section bands, borders) derive from `--color-primary` with `color-mix`, so a single edit rebrands the accents everywhere.
+Tints (section bands, borders, soft fills) derive from `--color-primary` with `color-mix`, so a single edit rebrands the accents everywhere.
 
-Page copy, the How it Works steps, the hero agent pipeline, and FAQ content live in `src/design-system/tokens.ts` next to the visual tokens.
+Page copy, How it Works steps, and FAQ content live in `src/design-system/tokens.ts` next to the visual tokens. Hero photography lives in `public/images/`.
 
 ## Project layout
 
@@ -50,10 +50,11 @@ src/
   design-system/   tokens.css (visual) + tokens.ts (content)
   components/      Nav, Hero, HowItWorks, WaitlistForm, Waitlist, Faq, Footer
   lib/waitlist.ts  email validation + localStorage store
+public/images/     hero and section photography
 ```
 
 `src/lib/waitlist.ts` exposes `submitWaitlist(email)` with a stable result contract, ready to swap for an API call later.
 
 ## Reference
 
-The product app this site markets lives at `/Users/kaan/.superset/projects/PowerSell/` (read only reference for tokens and copy; this repo never modifies it).
+The product app this site markets lives at `/Users/kaan/.superset/projects/PowerSell/` (read only reference for copy; this repo never modifies it).

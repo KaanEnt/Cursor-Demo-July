@@ -3,57 +3,56 @@
  * Change a value here and it propagates site-wide through the Tailwind
  * mapping in tailwind.config.ts. Components never use raw hex.
  *
- * Tints are derived from --color-primary with color-mix, so editing the
- * primary color updates soft accents, bands, and borders automatically.
+ * Palette: Cobalt + cool slate (light) — distinct from the prior cream/viridian.
+ * Tints derive from --color-primary via color-mix.
  */
 :root {
-  /* Palette (ported from the PowerSell app) */
-  --color-canvas: #f9f6ee; /* cream page background */
-  --color-foreground: #343434; /* charcoal headings, footer */
-  --color-surface: #ffffff; /* cards, nav */
-  --color-muted: #5b6472; /* body copy */
+  /* Palette */
+  --color-canvas: #eef2f7; /* cool mist page background */
+  --color-foreground: #142033; /* deep ink headings */
+  --color-surface: #f7f9fc; /* soft panels */
+  --color-muted: #5a667a; /* body copy */
 
-  --color-primary: #40826d; /* viridian CTAs and accents */
-  --color-primary-hover: #366a59;
-  --color-primary-foreground: #f9f6ee; /* text on primary */
+  --color-primary: #2f6fed; /* cobalt CTAs and accents */
+  --color-primary-hover: #2458c7;
+  --color-primary-foreground: #f7f9fc; /* text on primary */
 
   /* Inverted band (footer): stays dark even when text tokens invert */
-  --color-inverse: #343434;
-  --color-inverse-foreground: #f9f6ee;
+  --color-inverse: #142033;
+  --color-inverse-foreground: #e8eef7;
 
   /* Derived tints */
-  --color-primary-faint: color-mix(in srgb, var(--color-primary) 10%, transparent);
-  --color-primary-soft: color-mix(in srgb, var(--color-primary) 20%, transparent);
-  --color-primary-strong: color-mix(in srgb, var(--color-primary) 30%, transparent);
-  --color-primary-band: color-mix(in srgb, var(--color-primary) 5%, transparent);
-  --color-border: color-mix(in srgb, var(--color-primary) 20%, transparent);
+  --color-primary-faint: color-mix(in srgb, var(--color-primary) 12%, transparent);
+  --color-primary-soft: color-mix(in srgb, var(--color-primary) 22%, transparent);
+  --color-primary-strong: color-mix(in srgb, var(--color-primary) 34%, transparent);
+  --color-primary-band: color-mix(in srgb, var(--color-primary) 7%, #eef2f7);
+  --color-border: color-mix(in srgb, var(--color-primary) 18%, #94a3b8);
 
-  /* Shape and type */
-  --radius: 0.5rem;
-  --font-sans: 'DM Sans', ui-sans-serif, system-ui, sans-serif;
-  --font-display: 'Source Serif 4', ui-serif, Georgia, serif;
+  /* Shape and type — one soft radius scale */
+  --radius: 0.75rem;
+  --font-sans: 'Outfit', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Outfit', ui-sans-serif, system-ui, sans-serif;
 }
 
-/* Dark landing (/dark): black surfaces, same token names. */
+/* Dark landing (/dark): same token names, dark theme lock. */
 .dark {
   color-scheme: dark;
 
-  --color-canvas: #000000; /* pure black page background */
-  --color-foreground: #f5f5f5; /* near-white headings */
-  --color-surface: #0a0a0a; /* near-black cards, nav */
-  --color-muted: #8a9199; /* body copy */
+  --color-canvas: #0c111a; /* off-black slate canvas */
+  --color-foreground: #eef2f7;
+  --color-surface: #141b27;
+  --color-muted: #93a0b5;
 
-  --color-primary: #62a890; /* lifted viridian for black backgrounds */
-  --color-primary-hover: #74b89f;
-  --color-primary-foreground: #000000; /* text on primary */
+  --color-primary: #5b8ef5; /* lifted cobalt for dark grounds */
+  --color-primary-hover: #7aa3f7;
+  --color-primary-foreground: #0c111a;
 
-  --color-inverse: #000000; /* black footer band */
-  --color-inverse-foreground: #a3a3a3;
+  --color-inverse: #070a10;
+  --color-inverse-foreground: #a8b3c7;
 
-  /* Derived tints recompute from the dark primary */
   --color-primary-faint: color-mix(in srgb, var(--color-primary) 16%, transparent);
   --color-primary-soft: color-mix(in srgb, var(--color-primary) 26%, transparent);
   --color-primary-strong: color-mix(in srgb, var(--color-primary) 40%, transparent);
-  --color-primary-band: color-mix(in srgb, var(--color-primary) 8%, #000000);
-  --color-border: color-mix(in srgb, var(--color-primary) 32%, transparent);
+  --color-primary-band: color-mix(in srgb, var(--color-primary) 10%, #0c111a);
+  --color-border: color-mix(in srgb, var(--color-primary) 28%, transparent);
 }
