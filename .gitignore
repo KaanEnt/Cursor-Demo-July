@@ -10,7 +10,3 @@ dist/
 npm-debug.log*
 
 .vite/
-.vercel
-.env*
-
-scripts/.listener-state.json

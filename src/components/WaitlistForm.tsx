@@ -25,7 +25,7 @@ export function WaitlistForm() {
 
   if (status.kind === 'success') {
     return (
-      <p className="animate-rise rounded-xl border border-border bg-surface px-4 py-3 font-medium text-primary">
+      <p className="animate-rise rounded-lg border border-border bg-surface px-4 py-3 font-medium text-primary">
         {waitlistCopy.success}
       </p>
     );
@@ -33,12 +33,8 @@ export function WaitlistForm() {
 
   return (
     <form onSubmit={handleSubmit} noValidate className="space-y-2">
-      <label htmlFor="waitlist-email" className="block text-sm font-medium text-foreground">
-        {waitlistCopy.label}
-      </label>
       <div className="flex flex-col gap-3 sm:flex-row">
         <input
-          id="waitlist-email"
           type="email"
           value={email}
           onChange={(event) => {
@@ -46,11 +42,12 @@ export function WaitlistForm() {
             if (status.kind === 'error') setStatus({ kind: 'idle' });
           }}
           placeholder={waitlistCopy.placeholder}
-          className="flex-1 rounded-xl border border-border bg-surface px-4 py-3 text-foreground outline-none transition-colors placeholder:text-muted/70 focus:border-primary focus:ring-1 focus:ring-primary"
+          aria-label="Email address"
+          className="flex-1 rounded-lg border border-border bg-surface px-4 py-3 text-foreground outline-none transition-colors placeholder:text-muted/60 focus:border-primary focus:ring-1 focus:ring-primary"
         />
         <button
           type="submit"
-          className="whitespace-nowrap rounded-xl bg-primary px-6 py-3 font-semibold text-primary-foreground transition-all hover:bg-primary-hover active:scale-[0.98]"
+          className="rounded-lg bg-primary px-6 py-3 font-medium text-primary-foreground transition-colors hover:bg-primary-hover"
         >
           {waitlistCopy.button}
         </button>
