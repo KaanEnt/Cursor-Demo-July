@@ -8,47 +8,75 @@ export const brand = {
 } as const;
 
 export const hero = {
-  headlineLead: 'Close deals with ',
-  headlineAccent: 'AI that researches',
-  headlineTail: '',
-  body: 'Prospect research, product matching, and personalized outreach in one pipeline.',
+  headlineLead: 'Supercharge Your ',
+  headlineAccent: 'Sales Process',
+  headlineTail: ' With AI',
+  body: 'PowerSell researches your prospects, finds their pain points, and matches your products to their needs. Then it writes the outreach for you.',
   cta: 'Join the Waitlist',
-  ctaSecondary: 'See how it works',
+  ctaNote: 'Early access rolls out from the waitlist in small batches.',
 } as const;
+
+export interface Agent {
+  name: string;
+  action: string;
+  output: string;
+}
+
+// The four agents behind the product, shown as a live pipeline in the hero.
+export const agents: Agent[] = [
+  {
+    name: 'Company Profiler',
+    action: 'Researching prospect',
+    output: 'Acme Robotics: Series B, 140 people, expanding EU operations',
+  },
+  {
+    name: 'Pain Point Analyzer',
+    action: 'Reading buying signals',
+    output: 'Lead handoff between SDRs and AEs is slowing deals down',
+  },
+  {
+    name: 'Product Matcher',
+    action: 'Mapping your catalog',
+    output: 'Workflow Automation Suite fits the handoff bottleneck',
+  },
+  {
+    name: 'Outreach Generator',
+    action: 'Drafting outreach',
+    output: 'Personalized email ready for your review',
+  },
+];
 
 export interface Step {
   title: string;
   description: string;
 }
 
-export const howItWorks: { heading: string; body: string; steps: Step[] } = {
+export const howItWorks: { heading: string; steps: Step[] } = {
   heading: 'How PowerSell Works',
-  body: 'Three focused steps take a cold prospect to a ready-to-send message.',
   steps: [
     {
       title: 'Research & Analysis',
       description:
-        'AI researches the prospect company and surfaces the pain points that matter.',
+        'Our AI performs comprehensive research on your prospect company and identifies key pain points.',
     },
     {
       title: 'Product Matching',
       description:
-        'Your catalog is mapped to those needs so every pitch stays relevant.',
+        'We match your products to the specific needs and challenges of your prospect.',
     },
     {
       title: 'Personalized Outreach',
       description:
-        'Draft outreach that speaks to the prospect in their own language.',
+        "Generate personalized outreach content that speaks directly to your prospect's needs.",
     },
   ],
 };
 
 export const waitlistCopy = {
   heading: 'Join the Waitlist',
-  body: 'Be first when PowerSell opens. Leave your email and we will reach out.',
+  body: 'Be first in line when PowerSell opens up. Drop your email and we will reach out.',
   placeholder: 'you@company.com',
   button: 'Join Waitlist',
-  label: 'Work email',
   success: "You're on the list. We'll be in touch soon.",
   invalidEmail: 'Please enter a valid email address.',
   duplicateEmail: "You're already on the waitlist.",

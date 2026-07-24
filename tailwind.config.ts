@@ -3,7 +3,7 @@ import type { Config } from 'tailwindcss';
 // All colors resolve to CSS variables defined in src/design-system/tokens.css.
 // Edit that file to rebrand the site; never hardcode brand hex in components.
 export default {
-  content: ['./*.html', './src/**/*.{ts,tsx}'],
+  content: ['./index.html', './src/**/*.{ts,tsx}'],
   theme: {
     extend: {
       colors: {
@@ -11,10 +11,6 @@ export default {
         foreground: 'var(--color-foreground)',
         surface: 'var(--color-surface)',
         muted: 'var(--color-muted)',
-        inverse: {
-          DEFAULT: 'var(--color-inverse)',
-          foreground: 'var(--color-inverse-foreground)',
-        },
         primary: {
           DEFAULT: 'var(--color-primary)',
           hover: 'var(--color-primary-hover)',
@@ -33,7 +29,6 @@ export default {
       fontFamily: {
         sans: 'var(--font-sans)',
         display: 'var(--font-display)',
-        mono: 'var(--font-mono, ui-monospace, monospace)',
       },
     },
   },
